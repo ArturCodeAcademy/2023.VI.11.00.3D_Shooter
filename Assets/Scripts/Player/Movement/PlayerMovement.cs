@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
 	private void LateUpdate()
 	{
 		Vector3 moveVector = (_moveVector + _verticalVelocity * Vector3.up) * Time.deltaTime;
-        if (_moveVector.magnitude > 0 && (_moveVector *= _moveVectorMultiplier).magnitude == 0)
+        if (_moveVector.magnitude > 0)
             OnStop?.Invoke();
         else
             OnMove?.Invoke();
@@ -54,6 +54,8 @@ public class PlayerMovement : MonoBehaviour
 				IsGrounded = false;
             }
         }
+
+        _moveVector = Vector3.Lerp(_moveVector, Vector3.zero, _moveVectorMultiplier);
 	}
 
     public void HorizontalMove(Vector3 moveVector)
