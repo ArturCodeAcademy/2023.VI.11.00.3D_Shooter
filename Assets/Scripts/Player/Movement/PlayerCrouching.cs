@@ -99,8 +99,8 @@ public class PlayerCrouching : MonoBehaviour
 		if (_crouchHeight > _standHeight)
 			_crouchHeight = _standHeight;
 
-		if (_verticalCameraOffset > _crouchHeight)
-			_verticalCameraOffset = _crouchHeight;
+		if (_verticalCameraOffset > _standHeight)
+			_verticalCameraOffset = _standHeight;
 
 		if (_virtualCamera is not null)
 		{
