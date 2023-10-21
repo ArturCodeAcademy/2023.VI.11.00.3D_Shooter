@@ -13,7 +13,8 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private float _gravityScale = 1f;
     [SerializeField] private float _groundedTimer = 0.2f;
-    [SerializeField, Range(0, 1)] private float _moveVectorMultiplier;
+    [SerializeField, Range(0, 1)] private float _moveVectorMultiplierInAir;
+    [SerializeField, Range(0, 1)] private float _moveVectorMultiplierGrounded;
 
     private CharacterController _characterController;
     private float _groundedTimerCounter = 0f;
@@ -55,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        _moveVector = Vector3.Lerp(_moveVector, Vector3.zero, _moveVectorMultiplier);
+        _moveVector = Vector3.Lerp(_moveVector, Vector3.zero, IsGrounded? _moveVectorMultiplierGrounded : _moveVectorMultiplierInAir);
 	}
 
     public void HorizontalMove(Vector3 moveVector)
