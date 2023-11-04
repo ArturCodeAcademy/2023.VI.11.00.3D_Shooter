@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public bool IsGrounded { get; private set; }
 
-    public event Action OnGetGrounded;
+    public event Action<float> OnGetGrounded;
     public event Action OnGetOfTheGround;
     public event Action OnMove;
     public event Action OnStop;
@@ -41,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
         {
             IsGrounded = true;
             _groundedTimerCounter = _groundedTimer;
-            OnGetGrounded?.Invoke();
+            OnGetGrounded?.Invoke(_verticalVelocity);
             _verticalVelocity = 0;
         }
         else

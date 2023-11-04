@@ -2,12 +2,14 @@ using UnityEngine;
 
 [RequireComponent(typeof(PlayerMovement))]
 [RequireComponent(typeof(PlayerCrouching))]
+[RequireComponent(typeof(Stamina))]
 public class PlayerController : MonoBehaviour
 {
 	[SerializeField, Min(0)] private float _speedInAir;
 	[SerializeField, Min(0)] private float _crouchSpeed;
 	[SerializeField, Min(0)] private float _moveSpeed;
 	[SerializeField, Min(0)] private float _runSpeed;
+	[SerializeField, Min(0)] private float _runStaminaUsagePerSecond;
 
 	[Space(5)]
 	[SerializeField, Min(1)] private int _jumpCount = 1;
@@ -15,6 +17,7 @@ public class PlayerController : MonoBehaviour
 
 	private PlayerMovement _playerMovement;
 	private PlayerCrouching _playerCrouching;
+	private Stamina _stamina;
 
 	private int _leftJumps;
 	private float _jumpForce;
@@ -23,6 +26,7 @@ public class PlayerController : MonoBehaviour
 	{
 		_playerMovement = GetComponent<PlayerMovement>();
 		_playerCrouching = GetComponent<PlayerCrouching>();
+		_stamina = GetComponent<Stamina>();
 	}
 
 	private void Start()
@@ -44,7 +48,11 @@ public class PlayerController : MonoBehaviour
 		else if (_playerCrouching.IsCrouched)
 			hMove *= _crouchSpeed;
 		else if (Input.GetKey(KeyCode.LeftShift))
-			hMove *= _runSpeed;
+		{
+			float usage = _runStaminaUsagePerSecond * Time.deltaTime;
+			float speed = _moveSpeed + (_runSpeed - _moveSpeed) * (_stamina.UseStamina(usage) / usage);
+			hMove *= speed;
+		}
 		else
 			hMove *= _moveSpeed;
 
@@ -52,7 +60,7 @@ public class PlayerController : MonoBehaviour
 			_playerMovement.HorizontalMove(hMove);
 	}
 
-	private void ResetJumps()
+	private void ResetJumps(float _ = default)
 	{
 		_leftJumps = _jumpCount;
 	}
