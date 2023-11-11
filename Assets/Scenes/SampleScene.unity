@@ -1666,6 +1666,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   _text: {fileID: 787256263}
   _format: '{0:0} / {1:0}'
+  _updateTime: 0.5
 --- !u!114 &2145049863
 MonoBehaviour:
   m_ObjectHideFlags: 0
