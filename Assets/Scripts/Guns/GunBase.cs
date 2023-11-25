@@ -5,9 +5,10 @@ public class GunBase : MonoBehaviour
 {
 	[SerializeField, Min(0.01f)] public float _fireRate;
 	[SerializeField, Range(0, 180)] private float _fireSpread;
-	[SerializeField] GameObject _hole;
-	[SerializeField] GameObject _shootEffect;
-	[SerializeField] Transform _muzzle;
+	[SerializeField] private GameObject _hole;
+	[SerializeField] private GameObject _shootEffect;
+	[SerializeField] private Transform _muzzle;
+	[SerializeField, Min(0)] private float _damage;
 
 	private float _pause = 0;
 
@@ -32,8 +33,14 @@ public class GunBase : MonoBehaviour
 			if (_shootEffect is not null)
 				Instantiate(_shootEffect, _muzzle.position, _muzzle.rotation);
 
-			if (hit.collider is not null && _hole is not null)
-				Instantiate(_hole, hit.point, Quaternion.LookRotation(hit.normal, Vector3.up));
+			if (hit.collider is not null)
+			{
+				if (_hole is not null)
+					Instantiate(_hole, hit.point, Quaternion.LookRotation(hit.normal, Vector3.up));
+
+				if (hit.collider.TryGetComponent(out IHittable hittable))
+					hittable.Hit(_damage);
+			}
 		}
 	}
 
