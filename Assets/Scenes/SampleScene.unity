@@ -151,13 +151,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 18117320}
-  m_LocalRotation: {x: -0.000000021855694, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 839742727}
-  m_Father: {fileID: 1630439096}
+  m_Father: {fileID: 1937491580}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -774,11 +774,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fireRate: 5
-  _fireSpread: 15
+  _fireSpread: 0
   _hole: {fileID: 6233255706716574713, guid: 9ab88cd9c26c22f4b855554ba487cf19, type: 3}
-  _shootEffect: {fileID: 2624720416793848877, guid: 3b4fe1d3102af274b8483e0d055f82bf, type: 3}
+  _shootEffect: {fileID: 1743301284569550, guid: ad2ab49d0a2a17148bd51c93d977bdbc, type: 3}
   _muzzle: {fileID: 1666183287}
-  _damage: 2
+  _damage: 5
 --- !u!1 &784447288 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1211224163959578, guid: 4e0d8c90232339e42aeb2c71a3e573ef, type: 3}
@@ -2460,6 +2460,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1937491580}
   - component: {fileID: 1937491581}
+  - component: {fileID: 1937491582}
   m_Layer: 0
   m_Name: Turret
   m_TagString: Untagged
@@ -2476,11 +2477,12 @@ Transform:
   m_GameObject: {fileID: 1937491579}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 105.91779, y: 198.9268, z: 84.20845}
+  m_LocalPosition: {x: 114.16779, y: 198.97, z: 84.20845}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1630439096}
+  - {fileID: 18117321}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1937491581
@@ -2495,7 +2497,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21e0e5277f7af8f4fb4607284020abdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <MaxHealth>k__BackingField: 100
+  <MaxHealth>k__BackingField: 20
+--- !u!114 &1937491582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1937491579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 884ea6c3c93bbd044871a1ed394d582c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: {fileID: 1937491581}
+  _explosionPrefab: {fileID: 1121192042590650, guid: e1b08032bec16ba4eb1ae23cbd572664, type: 3}
+  _detach:
+  - {fileID: 1630439091}
+  - {fileID: 81790104}
+  - {fileID: 658186032}
+  - {fileID: 756072358}
+  - {fileID: 784447288}
+  - {fileID: 1464881506}
+  - {fileID: 1268947738}
+  - {fileID: 1399457545}
+  - {fileID: 810099764}
+  - {fileID: 633808161}
+  - {fileID: 887461544}
+  - {fileID: 816479553}
+  _destroyDelay: 20
+  _explosionForce: 10000
+  _explosionRadius: 2
 --- !u!1 &2034855689
 GameObject:
   m_ObjectHideFlags: 0
@@ -2687,10 +2719,7 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 95989914295931534, guid: 4e0d8c90232339e42aeb2c71a3e573ef, type: 3}
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 4321323138328902, guid: 4e0d8c90232339e42aeb2c71a3e573ef, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 18117321}
+    m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1267933996077318, guid: 4e0d8c90232339e42aeb2c71a3e573ef, type: 3}
       insertIndex: -1

@@ -36,7 +36,7 @@ public class GunBase : MonoBehaviour
 			if (hit.collider is not null)
 			{
 				if (_hole is not null)
-					Instantiate(_hole, hit.point, Quaternion.LookRotation(hit.normal, Vector3.up));
+					Instantiate(_hole, hit.point, Quaternion.LookRotation(hit.normal, Vector3.up), hit.transform);
 
 				if (hit.collider.TryGetComponent(out IHittable hittable))
 					hittable.Hit(_damage);
