@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class Health : MonoBehaviour
+public class Health : MonoBehaviour, IHittable
 {
     [field:SerializeField, Min(1)]
     public float MaxHealth { get; private set; }
