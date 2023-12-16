@@ -30,39 +30,36 @@ public class TurretShooting : MonoBehaviour
         if (_pause > 0)
         {
             _pause -= Time.deltaTime;
-            if (_pause < 0)
+            if (_pause < 0 && !(_leftShots < _shotCount))
                 _laser.enabled = true;
             else
                 return;
         }
 
-        if (Physics.Raycast(_muzzle.position, _muzzle.forward, out RaycastHit hit) || _leftShots < _shotCount)
+        if (Physics.Raycast(_muzzle.position, _muzzle.forward, out RaycastHit hit) && hit.transform == Player.Instance.transform || _leftShots < _shotCount)
         {
-			if (hit.transform == Player.Instance.transform)
+            _laser.enabled = false;
+            if (--_leftShots <= 0)
             {
-                _laser.enabled = false;
-                if (--_leftShots <= 0)
-                {
-                    _pause = _cooldown;
-                    _leftShots = _shotCount;
-                }
-                else
-                {
-                    _pause = 1f / _fireRate;
-                }
-
-                Vector3 directionWithSpread = GunBase.GetDirectionWithSpread(_spreadAngle, _muzzle.forward);
-                if (Physics.Raycast(_muzzle.position, directionWithSpread, out RaycastHit h))
-                    if (h.transform.TryGetComponent(out IHittable hittable))
-                        hittable.Hit(_damage);
-                    else
-                        Instantiate(_hole, h.point, Quaternion.LookRotation(h.normal, Vector3.up), h.transform);
-
-                if (_muzzleFlashPrefab)
-					Instantiate(_muzzleFlashPrefab, _muzzle.position, _muzzle.rotation);
-
-                _audioSource?.Play();
+                _pause = _cooldown;
+                _leftShots = _shotCount;
             }
-		}
+            else
+            {
+                _pause = 1f / _fireRate;
+            }
+
+            Vector3 directionWithSpread = GunBase.GetDirectionWithSpread(_spreadAngle, _muzzle.forward);
+            if (Physics.Raycast(_muzzle.position, directionWithSpread, out RaycastHit h))
+                if (h.transform.TryGetComponent(out IHittable hittable))
+                    hittable.Hit(_damage);
+                else
+                    Instantiate(_hole, h.point, Quaternion.LookRotation(h.normal, Vector3.up), h.transform);
+
+            if (_muzzleFlashPrefab)
+				Instantiate(_muzzleFlashPrefab, _muzzle.position, _muzzle.rotation);
+
+            _audioSource?.Play();
+        }
 	}
 }
