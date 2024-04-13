@@ -11,6 +11,7 @@ public class OnEndHealth : MonoBehaviour
 	[SerializeField] private List<GameObject> _detach;
 	[SerializeField, Min(0)] private float _destroyDelay = 5f;
 	[SerializeField, Min(0)] private float _explosionForce = 0.5f;
+	[SerializeField, Min(0)] private float _explosionAngularImpulse = 0.5f;
 	[SerializeField, Min(0)] private float _explosionRadius = 0.5f;
 
 	private void OnEnable()
@@ -32,6 +33,7 @@ public class OnEndHealth : MonoBehaviour
 				collider.convex = true;
 			var rb = item.AddComponent<Rigidbody>();
 			rb.AddExplosionForce(_explosionForce, transform.position, _explosionRadius);
+			rb.AddTorque(Random.insideUnitSphere * _explosionAngularImpulse, ForceMode.Impulse);
 			Destroy(item, _destroyDelay);
 		}
 		
