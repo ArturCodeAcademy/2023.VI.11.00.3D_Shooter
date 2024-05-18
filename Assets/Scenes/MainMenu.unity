@@ -1504,6 +1504,10 @@ MonoBehaviour:
   _levelButtons:
   - Name: Level 1
     SceneName: SampleScene
+  - Name: Level 2
+    SceneName: Level 2
+  - Name: Level 3
+    SceneName: A
   _buttonParent: {fileID: 1455574761}
   _buttonPrefab: {fileID: 1113819188}
 --- !u!1 &1588607539
