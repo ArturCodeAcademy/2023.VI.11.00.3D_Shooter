@@ -67,6 +67,7 @@ public class PlayerMovement : MonoBehaviour
 
 	public void Jump(float jumpForce)
     {
-		_verticalVelocity = jumpForce;
+        if (IsGrounded || _verticalVelocity >= 0)
+            _verticalVelocity = jumpForce;
 	}
 }
