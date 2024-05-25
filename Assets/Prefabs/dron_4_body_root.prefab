@@ -1247,6 +1247,7 @@ GameObject:
   - component: {fileID: 6252728196588162498}
   - component: {fileID: 170375397118122335}
   - component: {fileID: 4046936113012513518}
+  - component: {fileID: 3195093173782757264}
   m_Layer: 0
   m_Name: dron_4_body_root
   m_TagString: Untagged
@@ -1367,6 +1368,22 @@ MonoBehaviour:
   _spreadAngle: 2.5
   _muzzleFlashPrefab: {fileID: 5896226565766403009, guid: 3b4fe1d3102af274b8483e0d055f82bf, type: 3}
   _hole: {fileID: 6233255706716574713, guid: 9ab88cd9c26c22f4b855554ba487cf19, type: 3}
+--- !u!114 &3195093173782757264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6630886578255417680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8289b0892de13a44686f6e757c7f642d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _horizontalSpeed: 7
+  _verticalSpeed: 7
+  _minHorizontalDistance: 10
+  _minVerticalDistance: 5
 --- !u!1 &7633016352827082544
 GameObject:
   m_ObjectHideFlags: 0
