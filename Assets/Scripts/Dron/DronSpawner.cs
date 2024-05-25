@@ -17,7 +17,7 @@ public class DronSpawner : MonoBehaviour
 		if (_spawnTimer <= 0 && _dronCount < _maxDronCount)
         {
 			_spawnTimer = _spawnInterval;
-			SpawnDron();
+			SpawnDron(); 
 		}
 	}
 
