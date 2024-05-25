@@ -1796,7 +1796,7 @@ MonoBehaviour:
   - {fileID: 2961716318032440942, guid: 647573d8a9fbeca49882123ba8096520, type: 3}
   _spawnArea: {x: 100, y: 25, z: 100}
   _spawnInterval: 2
-  _maxDrons: 2
+  _maxDronCount: 3
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
